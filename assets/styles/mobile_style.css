@@ -1,0 +1,219 @@
+/* TEXT STYLES */
+
+body {
+    font-family: 'Roboto', sans-serif;
+}
+
+h1 {
+    font-weight: 700;
+    padding: 0px;
+}
+
+p {
+    font-weight: 350;
+}
+
+.line-wrap {
+    line-height: 25%;
+}
+
+/* DIV STYLES*/
+
+.header {
+    width: 95%;
+    margin-left: auto; 
+    margin-right: auto;
+    text-align: center;
+}
+
+#header-with-menu {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    column-gap: 15px;
+}
+
+#header-title {
+    flex: 2 1 90%;
+}
+
+#header-menu {
+    flex: 1 2 auto;
+}
+
+.content {
+    width: 95%;
+    margin-left: auto; 
+    margin-right: auto;
+    text-align: center;
+}
+
+.footer {
+    width:50%;
+    display:flex;
+    align-items: center; 
+    justify-content: center;
+    flex-direction: column-reverse;
+    margin-left:auto;
+    margin-right:auto;
+    font-size: 10pt;
+    font-style: italic;
+}
+
+#social-icons-flexbox {
+    display: flex;
+    width:100%;
+    flex-direction: row;
+    justify-content: space-evenly;
+    align-items: center;
+    font-size: 14pt;
+}
+
+/* TABLE */
+
+table {
+    text-align: left;
+    text-justify: inter-word;
+    width: 95%;
+    margin-left: auto; 
+    margin-right: auto;    
+}
+
+td {
+    padding: 0px 10px 10px 10px;
+    font-weight: 350;
+
+}
+
+/* TEXT DECORATIION */
+
+.error {
+    text-decoration-line: underline;
+    text-decoration-style: wavy;
+    text-decoration-color: red;
+    text-decoration-thickness:1px;
+    text-underline-offset: 10%;
+}
+
+.boxed {
+    border: 1px black solid;
+    padding: 10px;
+    border-radius: 5px;
+    box-shadow: 5px 5px 0px black;
+}
+
+.boxed-black {
+    border: 1px black solid;
+    padding: 10px;
+    border-radius: 5px;
+    background-color: black;
+    color: white;
+}
+
+/* BUTTONS */
+
+a {
+    text-decoration: none;
+    color: black;
+    -webkit-tap-highlight-color: rgba(0,0,0,0);
+}
+
+.btn {
+    color: black;
+    padding: 10px 30px 10px 30px;
+    width:fit-content;  
+    margin-left: auto;
+    margin-right: auto;
+    -webkit-tap-highlight-color: rgba(0,0,0,0);
+}
+
+.btn.boxed:hover {
+    transform: translate(5px, 5px);
+    box-shadow: 0px 0px 0px black;
+    transition: .1s;
+}
+
+.social-icon:hover {
+    color: red;
+    transition: .2s;
+}
+
+
+/* KEYBOARD */
+#keyboard-cont {
+    margin: 1rem 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    row-gap: 2px;
+}
+  
+#keyboard-cont div {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width:100%;
+    gap:3px;
+}
+
+.fourth-row{
+    padding: 20px 0 20px 0;
+}
+
+.keyboard-button {
+    cursor: pointer;
+    color: black;
+    font-family: 'Roboto Mono', monospace;
+    background-color: white;
+    line-height: 1.5;
+    font-size:12pt;
+    touch-action: manipulation;
+    user-select: none;
+    flex: 1 1 0px;
+    margin-left: auto;
+    margin-right: auto;
+    box-shadow: 0px 0px 0px black;
+    transform: translate(2px,2px);
+}
+
+.keyboard-button.clicked {
+    transform: translate(2px,2px);
+    box-shadow: 0px 0px 0px black;
+}
+
+/* ATTEMPT ENTRY */
+
+#attempt-box {
+    font-family: 'Roboto Mono', monospace;
+    font-size: 14pt;
+    width: 75%;
+    line-height: 2;
+    margin:20px;
+    border: 1px black solid;
+    border-radius: 5px;
+    background-color: white;
+    color: black;
+    padding: 0 10px 0 10px;
+}
+
+/* ATTEMPT BOXES */
+
+#word-prompts {
+    display: flex;
+    flex-direction: row;
+    column-gap: 10px;
+    margin: 15pt 0 15pt 0;
+}
+
+.prompt {
+    flex: 1 1 0px;
+    padding: 15px;
+    aspect-ratio: 1/1;
+    align-items: center;
+}
+
+.prompt.clicked {
+    transform: translate(5px, 5px);
+    box-shadow: 0px 0px 0px black;
+}

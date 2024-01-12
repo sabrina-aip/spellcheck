@@ -1,0 +1,222 @@
+/* TEXT STYLES */
+
+body {
+    font-family: 'Roboto', sans-serif;
+}
+
+h1 {
+    font-weight: 700;
+    padding: 0px;
+}
+
+p {
+    font-weight: 350;
+}
+
+.line-wrap {
+    line-height: 25%;
+}
+
+/* DIV STYLES*/
+
+.header {
+    width: 30%;
+    margin-left: auto; 
+    margin-right: auto;
+    text-align: center;
+}
+
+#header-with-menu {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    column-gap: 15px;
+}
+
+#header-title {
+    flex: 4 1 90%;
+}
+
+#header-menu {
+    flex: 1 2 10%;
+}
+
+.content {
+    width: 30%;
+    margin-left: auto; 
+    margin-right: auto;
+    text-align: center;
+}
+
+.footer {
+    width:30%;
+    display:flex;
+    align-items: center; 
+    justify-content: center;
+    flex-direction: column-reverse;
+    margin-left:auto;
+    margin-right:auto;
+    font-size: 10pt;
+    font-style: italic;
+}
+
+#social-icons-flexbox {
+    display: flex;
+    width:40%;
+    flex-direction: row;
+    justify-content: space-evenly;
+    align-items: center;
+    font-size: 14pt;
+}
+
+/* TABLE */
+
+table {
+    text-align: left;
+    text-justify: inter-word;
+    width: 80%;
+    margin-left: auto; 
+    margin-right: auto;    
+}
+
+td {
+    padding: 0px 10px 10px 10px;
+    font-weight: 350;
+
+}
+
+/* TEXT DECORATIION */
+
+.error {
+    text-decoration-line: underline;
+    text-decoration-style: wavy;
+    text-decoration-color: red;
+    text-decoration-thickness: 1px;
+    text-underline-offset: 10%;
+}
+
+.boxed {
+    border: 1px black solid;
+    padding: 10px;
+    background-color: white;
+    border-radius: 5px;
+    box-shadow: 5px 5px 0px black;
+}
+
+.boxed-black {
+    border: 1px black solid;
+    padding: 10px;
+    border-radius: 5px;
+    background-color: black;
+    color: white;
+}
+
+
+/* BUTTONS */
+
+a {
+    text-decoration: none;
+    color: black;
+}
+
+.btn {
+    color: black;
+    padding: 10px 30px 10px 30px;
+    width:fit-content;  
+    margin-left: auto;
+    margin-right: auto;
+}
+
+@media (hover: hover) {
+    .btn.boxed:hover {
+        transform: translate(5px, 5px);
+        box-shadow: 0px 0px 0px black;
+        transition: .1s;
+    }
+}
+
+.social-icon:hover {
+    color: red;
+    transition: .2s;
+}
+
+/* KEYBOARD */
+#keyboard-cont {
+    margin: 1rem 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    row-gap: 10px;
+}
+  
+#keyboard-cont div {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap:5px;
+    width:70%;
+}
+
+.keyboard-button {
+    cursor: pointer;
+    color: black;
+    font-family: 'Roboto Mono', monospace;
+    background-color: white;
+    line-height: 1.5;
+    font-size:12pt;
+    touch-action: manipulation;
+    flex: 1 1 0px;
+    margin-left: auto;
+    margin-right: auto;
+    box-shadow: 3px 3px 0px black;
+}
+
+.keyboard-button.clicked {
+    transform: translate(2px,2px);
+    box-shadow: 0px 0px 0px black;
+}
+
+/* ATTEMPT ENTRY */
+
+#attempt-box {
+    width: 75%;
+    border: 1px black solid;
+    border-radius: 5px;
+    background-color: white;
+    font-family: 'Roboto Mono', monospace;
+    font-size: 14pt;
+    color: black;
+    padding: 0 10px 0 10px;
+    line-height: 2;
+}
+
+/* ATTEMPT BOXES */
+
+#word-prompts {
+    display: flex;
+    flex-direction: row;
+    column-gap: 10px;
+    margin: 15pt 0 15pt 0;
+}
+
+.prompt {
+    flex: 1 1 0px;
+    padding: 15px;
+    aspect-ratio: 1/1;
+    align-items: center;
+    vertical-align: middle;
+}
+
+.prompt.clicked {
+    transform: translate(5px, 5px);
+    box-shadow: 0px 0px 0px black;
+}
+
+/* PRACTICE MODE */
+#practice-prompt {
+    display: flex;
+    flex-direction: row;
+    column-gap: 10px;
+    margin: 15pt 0 15pt 0;
+}
