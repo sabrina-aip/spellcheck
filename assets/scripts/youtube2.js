@@ -13,6 +13,7 @@ var wordCounter = 0;
 var attemptStr = '';
 var activeWord = null;
 var activePlayer = null;
+var wordLst;
 var levelPath;
 
 var results = '';
@@ -60,33 +61,27 @@ KEYBOARD_EL.innerHTML = `<div id="keyboard-cont">
     </div>
 </div>`
 
-var wordLst;
-
 // CHECK LEVEL 
 function checkLevel(level){
     resetPlayer(playerLst);
     attempt.value=attemptStr;
-    if (level == "easy"){
-        wordLst = shuffle(easyWords)
-        levelPath = "levelOne"
-    } else if (level == "medium"){
-        wordLst = shuffle(mediumWords)
-        levelPath = "levelTwo"
-    } else if (level == "hard"){
-        wordLst = shuffle(hardWords)
-        levelPath = "levelThree"
-    } else {
-        window.location.replace("ahshit.html");   
-    }
-    path = `assets/audio/${levelPath}`;
     updateWord();
 }
 
 function updateWord(){
+    if (wordCounter < 10){
+        levelPath = "levelOne"
+    } else if ((wordCounter >= 10) && (wordCounter<20)){
+        levelPath = "levelTwo"
+    }else if ((wordCounter >= 20) && (wordCounter<100)){
+        levelPath = "levelThree"
+    }
+    wordLst = genYoutubeWordLst()
+    path = `assets/audio/${levelPath}`;
     resetPlayer(playerLst);
     activeWord = wordLst[wordCounter];
     wordOnePlayer.src = `${path}/${wordLst[wordCounter]}.mp3`
-    console.log(`Word Counter: ${wordCounter}.\nActive Word: ${activeWord}`)
+    //console.log(`levelPath: ${levelPath}\nWord Counter: ${wordCounter}.\nActive Word: ${activeWord}`)
 
     publicCount.textContent = `Words Spelled: ${wordCounter}`
 }
@@ -285,4 +280,4 @@ document.addEventListener("keyup", (e) => {
     }
 })
 
-checkLevel(level)
+checkLevel("youtube")
