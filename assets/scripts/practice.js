@@ -1,7 +1,7 @@
 /* https://www.freecodecamp.org/news/build-a-wordle-clone-in-javascript/ */
 const KEYBOARD_EL = document.querySelector("#keyboard")
 const attempt = document.querySelector("#attempt-box")
-var radioVal = sessionStorage.getItem("radioVal");
+var level = sessionStorage.getItem("level");
 var publicCount = document.querySelector('#count')
 
 var wordOne = document.querySelector("#word-one")
@@ -283,4 +283,4 @@ document.addEventListener("keyup", (e) => {
     }
 })
 
-checkLevel(radioVal)
+checkLevel(level)

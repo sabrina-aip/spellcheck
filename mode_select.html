@@ -3,11 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0 maximum-scale=1.0, user-scalable=0">
-    <title>Speling Bee | Select Mode</title>
+    <title>Spellcheck - A Word Game | Select Mode</title>
     <link rel="stylesheet" href="assets/styles/large_style.css" media="(min-width: 800px)">
     <link rel="stylesheet" href="assets/styles/mobile_style.css" media="(max-width: 800px)">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css">
-    <link rel="icon" type="image/x-icon" href="assets/icons/honeybee_1f41d.ico">
+    <link rel="icon" type="image/x-icon" href="assets/icons/spellcheck.png">
 
 </head>
 <body>
@@ -16,14 +16,14 @@
         <div id="header-with-menu">
             <a href="index.html" class="boxed btn" id="header-menu"><i class="fa fa-arrow-left" style="font-size:30pt; padding:0%"></i></a>
             <div></div>
-            <h1 class="boxed" id="header-title"><span class="error">Speling</span> Bee</h1>
+            <h1 class="boxed" id="header-title"><span class="">Spellcheck</span></h1>
         </div>
     </div>
 
     <div class="content">
         <p><i>select game mode</i></p>
 
-        <h2 class="boxed-black"><span class="error">dayly</span> solo</h2>
+        <h2 class="boxed-black"><span class="error">dayly</span> challenge</h2>
         <p>Expand your <span class="error">vocabulry</span> and spell these words that refresh daily.</p>
         <a href="solo_game.html" >
             <div class="btn boxed">
@@ -65,11 +65,11 @@
 <script>
     // record the practice level setting
     const radios = document.querySelectorAll('input[name="difficulty-switch"]');
-    sessionStorage.setItem("radioVal", 'medium');
+    sessionStorage.setItem("level", 'medium');
     radios.forEach(radio => {
         radio.addEventListener('click', function () {
             radioVal = radio.id;
-            sessionStorage.setItem("radioVal", radioVal);
+            sessionStorage.setItem("level", radioVal);
             console.log(radioVal)
         });
     });
