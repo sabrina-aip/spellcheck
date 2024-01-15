@@ -106,7 +106,13 @@ function genYoutubeWordLst(){
 
     return result;
 }
-console.log(genYoutubeWordLst(mediumWords))
+
+var diffTime = new Date(today).getTime() - new Date("1/12/2024").getTime();
+var Difference_In_Days = Math.round(diffTime / (1000 * 3600 * 24));
+var puzzleNum = Difference_In_Days
+sessionStorage.setItem("puzzleNum", puzzleNum)
+
+
 /*
 var easyWordSelection = chooseWords(easyWords)
 var mediumWordSelection = chooseWords(mediumWords)

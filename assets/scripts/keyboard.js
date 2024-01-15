@@ -109,7 +109,6 @@ function checkLevel(level){
 // POPULATE PAGE WITH LEVEL APPROPRIATE WORDS
 function assignSound(levelPath, words){
     path = `assets/audio/${levelPath}`;
-    submissionDict.keys = words
    try{
         // setting neutral values
         wordLst = words;
@@ -146,7 +145,6 @@ function endGame(){
     sessionStorage.setItem("correctSpellingLst", correctSpellingLst);
     sessionStorage.setItem("submissionLst", submissionLst);
     sessionStorage.setItem("emojiResults", results);
-    sessionStorage.setItem("submissionDctLst", submissionDictLst);
     window.location.replace("results.html");
 }
 
