@@ -89,7 +89,7 @@ function updateWord(){
 function endGame(){
     sessionStorage.setItem("submissionLst", submissionLst)
     sessionStorage.setItem("correctSpellingLst",correctSpellingLst)
-    sessionStorage.setItem("level", level)
+    sessionStorage.setItem("level", "YouTube Challenge")
 
     window.location.replace("practice_results.html");
 }
@@ -118,6 +118,9 @@ function deleteLetter () {
 }
 
 function guessPreprocess() {
+    console.log(`lastActiveWord: ${lastActiveWord}`)
+    console.log(`activeWordd: ${activeWord}`)
+
     if ((lastActiveWord != null) & (activeWord==null)) {
         activeWord = lastActiveWord;
         checkGuess()
@@ -141,15 +144,11 @@ function checkGuess() {
     if (attemptStr.toLowerCase() == activeWord.toLowerCase()) {
         submissionLst.push(`<td>${attemptStr}</td>`)
         wordCounter += 1;
-
         stopSound(activePlayer[1]);
 
-        updatePlayer(playerLst, activePlayer)
-
         // DEACTIVATE WORD
-        activeWord = null;
+        // activeWord = null;
         activePlayer = null;
-
 
         // RECURSIVE CALL FOR NEW WORD
         updateWord();
@@ -162,32 +161,37 @@ function checkGuess() {
     attempt.value = attemptStr; 
     return
 }
-
 // update players to reflect their current status
 function updatePlayer(playerLst, activePlayer) {
+    console.log("Running updatePlayer()")
+
     if (activePlayer[0].classList.contains("clicked")) {
         stopSound(activePlayer[1]);
         activePlayer[0].classList.remove("clicked","fa-pause-circle");
         activePlayer[0].classList.add("fa-play-circle");
-        
+
         lastActiveWord = activeWord;
+        console.log(`assigning lastActiveWord: ${lastActiveWord}`)
 
         // DEACTIVATE WORD
-        activeWord = null;
+        // activeWord = null;
         activePlayer = null;
         return;
     }
 
     playerLst.forEach((player) => {
-        if ((!player[0].classList.contains("submitted")) & player[0] != activePlayer[0]) {
+        if (player[0] != activePlayer[0]) {
             player[0].classList.remove("clicked", "fa-pause-circle");
             stopSound(player[1]);
-        } else if ((!player[0].classList.contains("submitted")) & player[0] == activePlayer[0]) {
+        } else if (player[0] == activePlayer[0]) {
             activePlayer[0].classList.add("clicked","fa-pause-circle");
             activePlayer[1].play();
+        } else {
+            console.log("updatePlayer loophole triggered.")
         }
     })
-    return;
+
+
 }
 
 function resetPlayer(playerLst) {

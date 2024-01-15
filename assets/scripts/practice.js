@@ -152,7 +152,7 @@ function checkGuess() {
         updatePlayer(playerLst, activePlayer)
 
         // DEACTIVATE WORD
-        activeWord = null;
+        // activeWord = null;
         activePlayer = null;
 
 
@@ -178,7 +178,7 @@ function updatePlayer(playerLst, activePlayer) {
         lastActiveWord = activeWord;
 
         // DEACTIVATE WORD
-        activeWord = null;
+        // activeWord = null;
         activePlayer = null;
         return;
     }
