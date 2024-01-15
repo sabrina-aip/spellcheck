@@ -188,7 +188,7 @@ function checkGuess() {
         stopSound(activePlayer[1]);
         activePlayer[0].style.backgroundColor = "#79b15a";
         activePlayer[0].classList.add("submitted", "fa-check");     
-        activePlayer[0].classList.remove("clicked","fa-play-circle", "fa-pause-circle","btn");
+        activePlayer[0].classList.remove("clicked","fa-play-circle", "fa-circle-stop","btn");
 
         // RECORD FOR RESULTS
         submissionLst.push(`<td>${attemptStr}</td>`)
@@ -200,7 +200,7 @@ function checkGuess() {
         stopSound(activePlayer[1]);
         activePlayer[0].style.backgroundColor = "#d25842";
         activePlayer[0].classList.add("submitted", "fa-xmark"); 
-        activePlayer[0].classList.remove("clicked","fa-pause-circle", "fa-play-circle","btn");
+        activePlayer[0].classList.remove("clicked","fa-circle-stop", "fa-play-circle","btn");
 
         // RECORD FOR RESULTS
         submissionLst.push(`<td class="error">${attemptStr}</td>`)
@@ -224,7 +224,7 @@ function checkGuess() {
 function updatePlayer(playerLst, activePlayer) {
     if (activePlayer[0].classList.contains("clicked")) {
         stopSound(activePlayer[1]);
-        activePlayer[0].classList.remove("clicked","fa-pause-circle");
+        activePlayer[0].classList.remove("clicked","fa-circle-stop");
         activePlayer[0].classList.add("fa-play-circle");
 
         lastActiveWord = activeWord;
@@ -238,10 +238,10 @@ function updatePlayer(playerLst, activePlayer) {
 
     playerLst.forEach((player) => {
         if ((!player[0].classList.contains("submitted")) & player[0] != activePlayer[0]) {
-            player[0].classList.remove("clicked", "fa-pause-circle");
+            player[0].classList.remove("clicked", "fa-circle-stop");
             stopSound(player[1]);
         } else if ((!player[0].classList.contains("submitted")) & player[0] == activePlayer[0]) {
-            activePlayer[0].classList.add("clicked","fa-pause-circle");
+            activePlayer[0].classList.add("clicked","fa-circle-stop");
             activePlayer[1].play();
         }
     })

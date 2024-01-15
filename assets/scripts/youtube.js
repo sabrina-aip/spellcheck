@@ -69,6 +69,7 @@ function checkLevel(level){
 }
 
 function updateWord(){
+    resetPlayer(playerLst);
     if (wordCounter < 10){
         levelPath = "levelOne"
     } else if ((wordCounter >= 10) && (wordCounter<20)){
@@ -78,10 +79,8 @@ function updateWord(){
     }
     wordLst = genYoutubeWordLst()
     path = `assets/audio/${levelPath}`;
-    resetPlayer(playerLst);
     activeWord = wordLst[wordCounter];
     wordOnePlayer.src = `${path}/${wordLst[wordCounter]}.mp3`
-    //console.log(`levelPath: ${levelPath}\nWord Counter: ${wordCounter}.\nActive Word: ${activeWord}`)
 
     publicCount.textContent = `Words Spelled: ${wordCounter}`
 }
@@ -89,7 +88,7 @@ function updateWord(){
 function endGame(){
     sessionStorage.setItem("submissionLst", submissionLst)
     sessionStorage.setItem("correctSpellingLst",correctSpellingLst)
-    sessionStorage.setItem("level", level)
+    sessionStorage.setItem("level", "YouTube Challenge")
 
     window.location.replace("practice_results.html");
 }
@@ -118,6 +117,7 @@ function deleteLetter () {
 }
 
 function guessPreprocess() {
+
     if ((lastActiveWord != null) & (activeWord==null)) {
         activeWord = lastActiveWord;
         checkGuess()
@@ -141,15 +141,11 @@ function checkGuess() {
     if (attemptStr.toLowerCase() == activeWord.toLowerCase()) {
         submissionLst.push(`<td>${attemptStr}</td>`)
         wordCounter += 1;
-
         stopSound(activePlayer[1]);
 
-        updatePlayer(playerLst, activePlayer)
-
         // DEACTIVATE WORD
-        activeWord = null;
+        // activeWord = null;
         activePlayer = null;
-
 
         // RECURSIVE CALL FOR NEW WORD
         updateWord();
@@ -165,35 +161,37 @@ function checkGuess() {
 
 // update players to reflect their current status
 function updatePlayer(playerLst, activePlayer) {
+
     if (activePlayer[0].classList.contains("clicked")) {
         stopSound(activePlayer[1]);
-        activePlayer[0].classList.remove("clicked","fa-pause-circle");
+        activePlayer[0].classList.remove("clicked","fa-circle-stop");
         activePlayer[0].classList.add("fa-play-circle");
-        
+
         lastActiveWord = activeWord;
 
         // DEACTIVATE WORD
-        activeWord = null;
+        // activeWord = null;
         activePlayer = null;
         return;
     }
 
     playerLst.forEach((player) => {
-        if ((!player[0].classList.contains("submitted")) & player[0] != activePlayer[0]) {
-            player[0].classList.remove("clicked", "fa-pause-circle");
+        if (player[0] != activePlayer[0]) {
+            player[0].classList.remove("clicked", "fa-circle-stop");
             stopSound(player[1]);
-        } else if ((!player[0].classList.contains("submitted")) & player[0] == activePlayer[0]) {
-            activePlayer[0].classList.add("clicked","fa-pause-circle");
+        } else if (player[0] == activePlayer[0]) {
+            activePlayer[0].classList.add("clicked","fa-circle-stop");
             activePlayer[1].play();
         }
     })
-    return;
+
+
 }
 
 function resetPlayer(playerLst) {
     playerLst.forEach((player) => {
         player[0].style.backgroundColor = null;
-        player[0].classList.remove("clicked", "fa-xmark","fa-check", "submitted")
+        player[0].classList.remove("clicked", "fa-xmark","fa-check", "fa-circle-stop", "submitted")
         player[0].classList.add("fa-play-circle")
     })
 }
