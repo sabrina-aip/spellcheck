@@ -65,11 +65,11 @@
 <script>
     // record the practice level setting
     const radios = document.querySelectorAll('input[name="difficulty-switch"]');
-    sessionStorage.setItem("level", 'medium');
+    sessionStorage.setItem("radioVal", 'medium');
     radios.forEach(radio => {
         radio.addEventListener('click', function () {
             radioVal = radio.id;
-            sessionStorage.setItem("level", radioVal);
+            sessionStorage.setItem("radioVal", radioVal);
             console.log(radioVal)
         });
     });

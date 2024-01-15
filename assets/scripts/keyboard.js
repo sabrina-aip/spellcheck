@@ -136,7 +136,7 @@ function nextRound(){
     } else {
         window.location.replace("ahshit.html");    
     }
-
+    nextRoundBtn.innerHTML = `<div></div>`
     checkLevel(level)
 }
 
@@ -239,17 +239,29 @@ function checkGuess() {
         activeWord = null;
         activePlayer = null;   
     }
-    console.log(playerLst);
     attemptStr = '';
     attempt.value = attemptStr;    
     numSubmitted += 1;
 
     if (numSubmitted == 5) {
         updateResults();
-        nextRound();
+        showNextRound();
+        //nextRound();
     }
     return;
 }
+
+var nextRoundBtn = document.querySelector("#next-round-btn")
+function showNextRound(){
+    nextRoundBtn.innerHTML = `
+    <div class="boxed btn"> Go to next round&ensp;<i class="fa fa-arrow-right" style="font-size:10pt;"></i></div>
+    `
+}
+
+nextRoundBtn.addEventListener("click", (e) =>{
+    console.log("going to next round")
+    nextRound();
+})
 
 // update players to reflect their current status
 function updatePlayer(playerLst, activePlayer) {

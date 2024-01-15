@@ -191,6 +191,11 @@ a {
     line-height: 2;
 }
 
+/* NEXT ROUND BUTTON */
+#next-round-btn {
+    margin: 0 0 20px 0;
+}
+
 /* ATTEMPT BOXES */
 
 #word-prompts {
