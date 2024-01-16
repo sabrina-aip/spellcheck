@@ -134,10 +134,11 @@ function nextRound(){
     } else if (level.textContent == "Level Three: Hard"){
         endGame();
     } else {
-        window.location.replace("ahshit.html");    
+        window.location.replace("ahshit.html");  
     }
     nextRoundBtn.innerHTML = `<div></div>`
     checkLevel(level)
+    return;
 }
 
 function endGame(){
@@ -260,7 +261,12 @@ function showNextRound(){
 
 nextRoundBtn.addEventListener("click", (e) =>{
     console.log("going to next round")
+    if (level.textContent == "Level Three: Hard"){
+        endGame();
+        return;
+    }
     nextRound();
+
 })
 
 // update players to reflect their current status
