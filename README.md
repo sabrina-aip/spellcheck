@@ -1,4 +1,4 @@
-# Speling Bee (with one L)
+# Spellcheck
 
 I suck at spelling and this project was supposed to help me be better but it actually just made me accept that spelling is very hard. Anyway, here's the website assets including the audio clips. The actual process of generating new audio prompts can be found in a YouTube video I haven't published yet. 
 
