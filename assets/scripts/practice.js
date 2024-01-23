@@ -86,8 +86,6 @@ function updateWord(){
     resetPlayer(playerLst);
     activeWord = wordLst[wordCounter];
     wordOnePlayer.src = `${path}/${wordLst[wordCounter]}.mp3`
-    console.log(`Word Counter: ${wordCounter}.\nActive Word: ${activeWord}`)
-
     publicCount.textContent = `Words Spelled: ${wordCounter}`
 }
 
@@ -172,7 +170,7 @@ function checkGuess() {
 function updatePlayer(playerLst, activePlayer) {
     if (activePlayer[0].classList.contains("clicked")) {
         stopSound(activePlayer[1]);
-        activePlayer[0].classList.remove("clicked","fa-pause-circle");
+        activePlayer[0].classList.remove("clicked","fa-circle-stop");
         activePlayer[0].classList.add("fa-play-circle");
         
         lastActiveWord = activeWord;
@@ -185,10 +183,10 @@ function updatePlayer(playerLst, activePlayer) {
 
     playerLst.forEach((player) => {
         if ((!player[0].classList.contains("submitted")) & player[0] != activePlayer[0]) {
-            player[0].classList.remove("clicked", "fa-pause-circle");
+            player[0].classList.remove("clicked", "fa-circle-stop");
             stopSound(player[1]);
         } else if ((!player[0].classList.contains("submitted")) & player[0] == activePlayer[0]) {
-            activePlayer[0].classList.add("clicked","fa-pause-circle");
+            activePlayer[0].classList.add("clicked","fa-circle-stop");
             activePlayer[1].play();
         }
     })
@@ -198,7 +196,7 @@ function updatePlayer(playerLst, activePlayer) {
 function resetPlayer(playerLst) {
     playerLst.forEach((player) => {
         player[0].style.backgroundColor = null;
-        player[0].classList.remove("clicked", "fa-xmark","fa-check", "submitted")
+        player[0].classList.remove("clicked", "fa-xmark","fa-check", "fa-circle-stop", "submitted")
         player[0].classList.add("fa-play-circle")
     })
 }
