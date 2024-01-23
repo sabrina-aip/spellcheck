@@ -2,12 +2,13 @@ var emojiResults = sessionStorage.getItem('emojiResults');
 const numWrong = sessionStorage.getItem("numWrong");
 const correctSpellingLst = sessionStorage.getItem("correctSpellingLst").split(',');
 const submissionLst = sessionStorage.getItem("submissionLst").split(',');
+const puzzleNum = sessionStorage.getItem("puzzleNum");
 const results = document.querySelector("#results");
 const copyBtn = document.querySelector("#copy-btn")
 const typos = document.querySelector("#typos")
 
 copyBtn.addEventListener("click", (e) => {
-    shareableResults = `Speling Bee #1\nI got stung ${numWrong} times 🐝\n${sessionStorage.getItem('emojiResults').replaceAll("\\n", "\n").replaceAll(" ", "")}`;
+    shareableResults = `Spellcheck #${puzzleNum}\n${sessionStorage.getItem('emojiResults').replaceAll("\\n", "\n").replaceAll(" ", "")}`;
     navigator.clipboard.writeText(shareableResults);
 }) 
 
@@ -49,4 +50,4 @@ for (var i=0; i<numRows;i++){
 }
 typos.innerHTML = test;
 emojiResults = emojiResults.replaceAll('\\n', '<br>')
-results.innerHTML = emojiResults;
+results.innerHTML = `${emojiResults}`;

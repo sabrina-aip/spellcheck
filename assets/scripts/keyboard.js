@@ -15,8 +15,27 @@ var wordThreePlayer = document.querySelector("#word-three-player")
 var wordFourPlayer = document.querySelector("#word-four-player")
 var wordFivePlayer = document.querySelector("#word-five-player")
 
-var lastActiveWord = null;
+var wordOneSubmission = '';
+var wordTwoSubmission = '';
+var wordThreeSubmission = '';
+var wordFourSubmission = '';
+var wordFiveSubmission = '';
 
+var wordOneSpelling = '';
+var wordTwoSpelling = '';
+var wordThreeSpelling = '';
+var wordFourSpelling = '';
+var wordFiveSpelling = '';
+
+var playerLst = [
+    [wordOne, wordOnePlayer, wordOneSpelling, wordOneSubmission],
+    [wordTwo, wordTwoPlayer,wordTwoSpelling, wordTwoSubmission],
+    [wordThree, wordThreePlayer, wordThreeSpelling, wordThreeSubmission],
+    [wordFour, wordFourPlayer, wordFourSpelling, wordFourSubmission],
+    [wordFive, wordFivePlayer, wordFiveSpelling, wordFiveSubmission]
+];
+
+var lastActiveWord = null;
 var attemptStr = '';
 var activeWord = null;
 var activePlayer = null;
@@ -25,7 +44,6 @@ var numSubmitted;
 var numWrong = 0;
 var correctSpellingLst = [];
 var submissionLst = [];
-var playerLst = [[wordOne, wordOnePlayer],[wordTwo, wordTwoPlayer],[wordThree, wordThreePlayer],[wordFour, wordFourPlayer],[wordFive, wordFivePlayer]];
 
 KEYBOARD_EL.innerHTML = `<div id="keyboard-cont">
     <div class="first-row">
@@ -66,16 +84,23 @@ KEYBOARD_EL.innerHTML = `<div id="keyboard-cont">
     </div>
 </div>`
 
+
+var dictValue;
 // CHECK LEVEL 
 function checkLevel(level){
     resetPlayer(playerLst);
     attempt.value=attemptStr;
     if (level.textContent == "Level One: Easy"){
         assignSound("levelOneNEW", chooseWords(easyWords))
+        dictValue = "levelOne"
     } else if (level.textContent == "Level Two: Medium"){
         assignSound("levelTwoNEW", chooseWords(mediumWords))
+        dictValue = "levelTwo"
+
     } else if (level.textContent == "Level Three: Hard"){
         assignSound("levelThreeNEW", chooseWords(hardWords))
+        dictValue = "levelThree"
+
     } else {
         window.location.replace("ahshit.html");    
     }
@@ -84,8 +109,7 @@ function checkLevel(level){
 // POPULATE PAGE WITH LEVEL APPROPRIATE WORDS
 function assignSound(levelPath, words){
     path = `assets/audio/${levelPath}`;
-
-    try{
+   try{
         // setting neutral values
         wordLst = words;
         numSubmitted = 0;
@@ -110,10 +134,11 @@ function nextRound(){
     } else if (level.textContent == "Level Three: Hard"){
         endGame();
     } else {
-        window.location.replace("ahshit.html");    
+        window.location.replace("ahshit.html");  
     }
-
+    nextRoundBtn.innerHTML = `<div></div>`
     checkLevel(level)
+    return;
 }
 
 function endGame(){
@@ -127,6 +152,8 @@ function endGame(){
 // UPDATE RESULTS
 function updateResults(){
     playerLst.forEach((player) => {
+        correctSpellingLst.push(player[2])
+        submissionLst.push(player[3])
         if (player[0].classList.contains("fa-check")) {
             results += "🟩"
         } else if (player[0].classList.contains("fa-xmark")) {
@@ -182,16 +209,19 @@ function guessPreprocess(){
 }
 
 function checkGuess() {
-    correctSpellingLst.push(`<td>${activeWord}</td>`);        
+    //correctSpellingLst.push(`<td>${activeWord}</td>`);        
+    activePlayer[2] = `<td>${activeWord}</td>`
 
     if ((attemptStr.toLowerCase() == activeWord.toLowerCase())) {
         stopSound(activePlayer[1]);
         activePlayer[0].style.backgroundColor = "#79b15a";
         activePlayer[0].classList.add("submitted", "fa-check");     
-        activePlayer[0].classList.remove("clicked","fa-play-circle", "fa-pause-circle","btn");
+        activePlayer[0].classList.remove("clicked","fa-play-circle", "fa-circle-stop","btn");
 
         // RECORD FOR RESULTS
-        submissionLst.push(`<td>${attemptStr}</td>`)
+        activePlayer[3] = `<td>${attemptStr}</td>`
+        //submissionLst.push(`<td>${attemptStr}</td>`)
+
         
         // DEACTIVATE WORD
         activeWord = null;
@@ -200,12 +230,12 @@ function checkGuess() {
         stopSound(activePlayer[1]);
         activePlayer[0].style.backgroundColor = "#d25842";
         activePlayer[0].classList.add("submitted", "fa-xmark"); 
-        activePlayer[0].classList.remove("clicked","fa-pause-circle", "fa-play-circle","btn");
+        activePlayer[0].classList.remove("clicked","fa-circle-stop", "fa-play-circle","btn");
 
         // RECORD FOR RESULTS
-        submissionLst.push(`<td class="error">${attemptStr}</td>`)
+        activePlayer[3] = `<td class="error">${attemptStr}</td>`
+        //submissionLst.push(`<td class="error">${attemptStr}</td>`)
 
-            
         // DEACTIVATE WORD
         activeWord = null;
         activePlayer = null;   
@@ -213,18 +243,37 @@ function checkGuess() {
     attemptStr = '';
     attempt.value = attemptStr;    
     numSubmitted += 1;
+
     if (numSubmitted == 5) {
         updateResults();
-        nextRound();
+        showNextRound();
+        //nextRound();
     }
     return;
 }
+
+var nextRoundBtn = document.querySelector("#next-round-btn")
+function showNextRound(){
+    nextRoundBtn.innerHTML = `
+    <div class="boxed btn"> Go to next round&ensp;<i class="fa fa-arrow-right" style="font-size:10pt;"></i></div>
+    `
+}
+
+nextRoundBtn.addEventListener("click", (e) =>{
+    console.log("going to next round")
+    if (level.textContent == "Level Three: Hard"){
+        endGame();
+        return;
+    }
+    nextRound();
+
+})
 
 // update players to reflect their current status
 function updatePlayer(playerLst, activePlayer) {
     if (activePlayer[0].classList.contains("clicked")) {
         stopSound(activePlayer[1]);
-        activePlayer[0].classList.remove("clicked","fa-pause-circle");
+        activePlayer[0].classList.remove("clicked","fa-circle-stop");
         activePlayer[0].classList.add("fa-play-circle");
 
         lastActiveWord = activeWord;
@@ -238,10 +287,10 @@ function updatePlayer(playerLst, activePlayer) {
 
     playerLst.forEach((player) => {
         if ((!player[0].classList.contains("submitted")) & player[0] != activePlayer[0]) {
-            player[0].classList.remove("clicked", "fa-pause-circle");
+            player[0].classList.remove("clicked", "fa-circle-stop");
             stopSound(player[1]);
         } else if ((!player[0].classList.contains("submitted")) & player[0] == activePlayer[0]) {
-            activePlayer[0].classList.add("clicked","fa-pause-circle");
+            activePlayer[0].classList.add("clicked","fa-circle-stop");
             activePlayer[1].play();
         }
     })
@@ -251,7 +300,7 @@ function updatePlayer(playerLst, activePlayer) {
 function resetPlayer(playerLst) {
     playerLst.forEach((player) => {
         player[0].style.backgroundColor = null;
-        player[0].classList.remove("clicked", "fa-xmark","fa-check", "submitted")
+        player[0].classList.remove("clicked", "fa-xmark","fa-check", "fa-circle-stop", "submitted")
         player[0].classList.add("fa-play-circle")
     })
 }
@@ -260,27 +309,32 @@ function resetPlayer(playerLst) {
 
 wordOne.addEventListener("click", (e) => {
     activeWord = wordLst[0];
-    activePlayer = [wordOne, wordOnePlayer];
+    //activePlayer = [wordOne, wordOnePlayer];
+    activePlayer = playerLst[0];
     updatePlayer(playerLst, activePlayer)
 })
 wordTwo.addEventListener("click", (e) => {
     activeWord = wordLst[1];
-    activePlayer = [wordTwo, wordTwoPlayer];
+    //activePlayer = [wordTwo, wordTwoPlayer];
+    activePlayer = playerLst[1];
     updatePlayer(playerLst, activePlayer)
 })
 wordThree.addEventListener("click", (e) => {
     activeWord = wordLst[2];
-    activePlayer = [wordThree, wordThreePlayer];
+    activePlayer = playerLst[2];
+    //activePlayer = [wordThree, wordThreePlayer];
     updatePlayer(playerLst, activePlayer)
 })
 wordFour.addEventListener("click", (e) => {
     activeWord = wordLst[3];
-    activePlayer = [wordFour, wordFourPlayer];
+    activePlayer = playerLst[3];
+    //activePlayer = [wordFour, wordFourPlayer];
     updatePlayer(playerLst, activePlayer)
 })
 wordFive.addEventListener("click", (e) => {
     activeWord = wordLst[4];
-    activePlayer = [wordFive, wordFivePlayer];
+    activePlayer = playerLst[4];
+    //activePlayer = [wordFive, wordFivePlayer];
     updatePlayer(playerLst, activePlayer)
 })
 
