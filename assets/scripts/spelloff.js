@@ -69,8 +69,6 @@ function checkLevel(level){
 }
 
 var wordLst = genSpellOffWordLst()
-console.log(wordLst)
-
 
 function updateWord(){
     levelPath = "levelThreeNEW"
