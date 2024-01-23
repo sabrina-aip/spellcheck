@@ -108,6 +108,23 @@ function genYoutubeWordLst(){
     return result;
 }
 
+function genSpellOffWordLst(){
+    result = [];
+    var YTseed = cyrb128("phil");
+    // Four 32-bit component hashes provide the seed for sfc32.
+    var YTrand = sfc32(YTseed[0], YTseed[1], YTseed[2], YTseed[3]);
+
+    wordLst = hardWords
+    while (result.length < 25) {
+        var item = wordLst[Math.floor(YTrand()*wordLst.length)];
+        if (!result.includes(item)){
+            result.push(item)
+        }
+    }
+
+    return result;
+}
+
 var diffTime = new Date(today).getTime() - new Date("1/12/2024").getTime();
 var Difference_In_Days = Math.round(diffTime / (1000 * 3600 * 24));
 var puzzleNum = Difference_In_Days

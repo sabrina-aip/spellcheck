@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0 maximum-scale=1.0, user-scalable=0">
+    <title>Spellcheck - A Word Game | Spell Off</title>
+    <link rel="stylesheet" href="assets/styles/large_style.css" media="(min-width: 800px)">
+    <link rel="stylesheet" href="assets/styles/mobile_style.css" media="(max-width: 800px)">
+    <link rel="stylesheet" href="assets/styles/no_scroll.css" media="(max-width: 800px)">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css">
+    <link rel="icon" type="image/x-icon" href="assets/icons/spellcheck.png">
+
+</head>
+<body>
+    <div class="header">
+        <div id="header-with-menu">
+            <a href="mode_select.html" class="boxed btn" id="header-menu"><i class="fa fa-arrow-left" style="font-size:30pt; padding:0%"></i></a>
+            <div></div>
+            <h1 class="boxed" id="header-title"><span class="">Spell Off</span></h1>
+        </div>
+    </div>
+    <div class="content">
+        <div id="top-banner">
+            <h2 class="boxed-black" id="count"></h2>
+        </div>
+        <div id="practice-prompt">
+            <div id="word-one" class="prompt boxed btn fa fa-play-circle" style="font-size: 24pt;">
+                <audio id="word-one-player" src="" loop></audio>
+            </div>
+            <input id="attempt-box" type="text" placeholder="start typing..." readonly>
+        </div>
+        <div id="keyboard"></div>
+    </div>
+
+    <div class="footer">
+        <div><p>an answer in progress <span class="error">prject</span></p></div>
+        <div id="social-icons-flexbox">
+            <a href="https://www.youtube.com/answerinprogress" target="_blank" class="social-icon"><i class="fa-brands fa-youtube"></i></a>
+            <a href="https://www.instagram.com/answerinprogress" target="_blank" class="social-icon"><i class="fa-brands fa-instagram"></i></a>
+            <a href="https://www.patreon.com/answerinprogress" target="_blank" class="social-icon"><i class="fa-brands fa-patreon"></i></a>
+            <a href="https://answerinprogress.substack.com/" target="_black" class="social-icon"><i class="fa-regular fa-envelope"></i></a>
+        </div>
+    </div> 
+</body>
+<script src="assets/scripts/wordLstGenerator.js"></script>
+<script src="assets/scripts/spelloff.js"></script> 
+</html>
