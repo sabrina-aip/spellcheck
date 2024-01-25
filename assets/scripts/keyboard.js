@@ -254,9 +254,18 @@ function checkGuess() {
 
 var nextRoundBtn = document.querySelector("#next-round-btn")
 function showNextRound(){
-    nextRoundBtn.innerHTML = `
-    <div class="boxed btn"> Go to next round&ensp;<i class="fa fa-arrow-right" style="font-size:10pt;"></i></div>
-    `
+    if (level.textContent == "Level Three: Hard"){
+        nextRoundBtn.innerHTML = `
+        <div class="boxed btn"> see results&ensp;<i class="fa fa-arrow-right" style="font-size:10pt;"></i></div>
+        `
+        return
+    }
+    else {
+        nextRoundBtn.innerHTML = `
+        <div class="boxed btn"> go to next round&ensp;<i class="fa fa-arrow-right" style="font-size:10pt;"></i></div>
+        `
+        return
+    }
 }
 
 nextRoundBtn.addEventListener("click", (e) =>{
