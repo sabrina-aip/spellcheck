@@ -3,6 +3,7 @@ var typos = document.querySelector("#typos")
 var level = sessionStorage.getItem('level')
 var correctSpellingLst = sessionStorage.getItem("correctSpellingLst").split(",")
 var summary = document.querySelector("#summary")
+var numCorrect = sessionStorage.getItem("numCorrect")
 
 innerStr = ''
 
@@ -17,4 +18,4 @@ for (var i = 0; i<submissionLst.length; i++){
 }
 
 typos.innerHTML = innerStr;
-summary.innerText = `You spelled ${submissionLst.length-1} ${level} level words correctly.`
+summary.innerText = `You spelled ${numCorrect} ${level} level words correctly.`

@@ -36,6 +36,7 @@ p {
 
 #header-title {
     flex: 4 1 90%;
+    margin: 0;
 }
 
 #header-menu {
@@ -68,6 +69,25 @@ p {
     justify-content: space-evenly;
     align-items: center;
     font-size: 14pt;
+}
+
+.score-banner {
+    display:flex;
+    flex-direction: row;
+    justify-content: space-between;
+    width: 100%;
+    gap: 0 20px;
+    margin: 20px 0 0 0 ;
+}
+
+#total-count {
+    flex-grow: 2;
+    margin:10;
+}
+#correct-count {
+    flex-grow: 2;
+    margin:10;
+
 }
 
 /* TABLE */
@@ -224,4 +244,8 @@ a {
     flex-direction: row;
     column-gap: 10px;
     margin: 15pt 0 15pt 0;
+}
+
+#end-game-btn {
+    border-radius: 50px;
 }

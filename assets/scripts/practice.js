@@ -2,7 +2,9 @@
 const KEYBOARD_EL = document.querySelector("#keyboard")
 const attempt = document.querySelector("#attempt-box")
 var level = sessionStorage.getItem("level");
-var publicCount = document.querySelector('#count')
+var publicCount = document.querySelector('#total-count')
+var publicCorrectCount = document.querySelector('#correct-count')
+var endGameBtn = document.querySelector('#end-game-btn')
 
 var wordOne = document.querySelector("#word-one")
 var wordOnePlayer = document.querySelector("#word-one-player")
@@ -10,6 +12,7 @@ var wordOnePlayer = document.querySelector("#word-one-player")
 var lastActiveWord = null;
 
 var wordCounter = 0;
+var numCorrect = 0;
 var attemptStr = '';
 var activeWord = null;
 var activePlayer = null;
@@ -86,13 +89,16 @@ function updateWord(){
     resetPlayer(playerLst);
     activeWord = wordLst[wordCounter];
     wordOnePlayer.src = `${path}/${wordLst[wordCounter]}.mp3`
-    publicCount.textContent = `Words Spelled: ${wordCounter}`
+    publicCount.innerHTML = `${wordCounter}<br>total words`
+    publicCorrectCount.innerHTML = `${5-(wordCounter - numCorrect)}<br>lives remaining`
+
 }
 
 function endGame(){
     sessionStorage.setItem("submissionLst", submissionLst)
     sessionStorage.setItem("correctSpellingLst",correctSpellingLst)
     sessionStorage.setItem("level", level)
+    sessionStorage.setItem("numCorrect", numCorrect)
 
     window.location.replace("practice_results.html");
 }
@@ -144,6 +150,7 @@ function checkGuess() {
     if (attemptStr.toLowerCase() == activeWord.toLowerCase()) {
         submissionLst.push(`<td>${attemptStr}</td>`)
         wordCounter += 1;
+        numCorrect += 1;
 
         stopSound(activePlayer[1]);
 
@@ -157,7 +164,24 @@ function checkGuess() {
         updateWord();
     } else {
         submissionLst.push(`<td class="error">${attemptStr}</td>`)
-        endGame(); 
+
+        wordCounter += 1;
+
+        stopSound(activePlayer[1]);
+
+        updatePlayer(playerLst, activePlayer)
+
+        // DEACTIVATE WORD
+        activePlayer = null;
+
+
+        // RECURSIVE CALL FOR NEW WORD
+        updateWord();
+    }
+
+    if ((wordCounter - numCorrect) == 5) {
+        endGame();
+        return
     }
 
     attemptStr = '';
