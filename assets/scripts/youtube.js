@@ -118,14 +118,14 @@ function deleteLetter () {
 }
 
 function guessPreprocess() {
-    if ((lastActiveWord != null) & (activeWord==null)) {
-        activeWord = lastActiveWord;
-        checkGuess()
-        return;
-    } else if (activeWord == null) {
+    if (activePlayer == null) {
         console.log("Attempted guess without word selected.");
         attemptStr = '';
         attempt.value = attemptStr;
+        return;
+    } else if ((lastActiveWord != null) & (activeWord==null)) {
+        activeWord = lastActiveWord;
+        checkGuess()
         return;
     } else if (attemptStr == '') {
         console.log("Empty string submitted as guess. Ignoring that.");
