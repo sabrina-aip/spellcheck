@@ -139,6 +139,9 @@ function guessPreprocess() {
     } else if (attemptStr == '') {
         console.log("Empty string submitted as guess. Ignoring that.");
         return;
+    } else if (activePlayer == null) {
+        console.log("Sound has not yet been played. You shouldn't submit anything.");
+        return;
     } else {
         checkGuess();
     }
