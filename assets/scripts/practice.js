@@ -24,6 +24,8 @@ var correctSpellingLst = [];
 var wrongSubmission = '';
 var playerLst = [[wordOne, wordOnePlayer]];
 
+var audio = document.getElementById('word-one-player');
+
 KEYBOARD_EL.innerHTML = `<div id="keyboard-cont">
     <div class="first-row">
         <button class="keyboard-button boxed" id="q">Q</button>
@@ -102,6 +104,17 @@ function endGame(){
 
     window.location.replace("practice_results.html");
 }
+
+// PLAY/PAUSE ON SPACE PRESS
+document.addEventListener('keydown', event => {
+    if (event.code === 'Space') {
+      if (audio.paused) {
+        audio.play();
+      } else {
+        audio.pause();
+      }
+    }
+  });
 
 // STOP PLAYING SOUND
 function stopSound(soundObj) {
