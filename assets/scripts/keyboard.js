@@ -188,17 +188,15 @@ function deleteLetter () {
     attempt.value = attemptStr;
 }
 
-// CHECK IF GUESS IS CORRECT
-
-function guessPreprocess(){
-    if ((lastActiveWord != null) & (activeWord==null)) {
-        activeWord = lastActiveWord;
-        checkGuess()
-        return;
-    } else if (activeWord == null) {
+function guessPreprocess() {
+    if (activePlayer == null) {
         console.log("Attempted guess without word selected.");
         attemptStr = '';
         attempt.value = attemptStr;
+        return;
+    } else if ((lastActiveWord != null) & (activeWord==null)) {
+        activeWord = lastActiveWord;
+        checkGuess()
         return;
     } else if (attemptStr == '') {
         console.log("Empty string submitted as guess. Ignoring that.");
@@ -208,6 +206,7 @@ function guessPreprocess(){
     }
 }
 
+// CHECK IF GUESS IS CORRECT
 function checkGuess() {
     //correctSpellingLst.push(`<td>${activeWord}</td>`);        
     activePlayer[2] = `<td>${activeWord}</td>`
