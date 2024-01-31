@@ -91,14 +91,14 @@ function genYoutubeWordLst(){
     }
 
     wordLst = mediumWords
-    while ((result.length) < 20 && (result.length >= 10)) {
+    while (result.length < 20 && result.length >= 10) {
         var item = wordLst[Math.floor(YTrand()*wordLst.length)];
         if (!result.includes(item)){
             result.push(item)
         }
     }
     wordLst = hardWords
-    while ((result.length) < 100 && (result.length >= 20)) {
+    while (result.length < 100 && result.length >= 20) {
         var item = wordLst[Math.floor(YTrand()*wordLst.length)];
         if (!result.includes(item)){
             result.push(item)

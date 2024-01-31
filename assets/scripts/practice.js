@@ -127,7 +127,7 @@ function deleteLetter () {
 }
 
 function guessPreprocess() {
-    if ((lastActiveWord != null) && (activeWord==null)) {
+    if (lastActiveWord != null && activeWord==null) {
         activeWord = lastActiveWord;
         checkGuess()
         return;
@@ -204,10 +204,10 @@ function updatePlayer(playerLst, activePlayer) {
     }
 
     playerLst.forEach((player) => {
-        if ((!player[0].classList.contains("submitted")) && player[0] != activePlayer[0]) {
+        if (!player[0].classList.contains("submitted") && player[0] != activePlayer[0]) {
             player[0].classList.remove("clicked", "fa-circle-stop");
             stopSound(player[1]);
-        } else if ((!player[0].classList.contains("submitted")) && player[0] == activePlayer[0]) {
+        } else if (!player[0].classList.contains("submitted") && player[0] == activePlayer[0]) {
             activePlayer[0].classList.add("clicked","fa-circle-stop");
             activePlayer[1].play();
         }
