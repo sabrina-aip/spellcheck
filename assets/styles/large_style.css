@@ -233,6 +233,7 @@ a {
     align-items: center;
     vertical-align: middle;
 	cursor: pointer;
+	font-size: 24pt;
 }
 
 .prompt.clicked {
