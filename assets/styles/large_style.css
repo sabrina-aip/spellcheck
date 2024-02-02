@@ -94,16 +94,24 @@ p {
 
 #results {
 	display: grid;
-	grid-template-rows: repeat(3, 65px);
-	grid-template-columns: repeat(5, 50px);
+	grid-template-rows: repeat(3, 52px);
+	grid-template-columns: repeat(5, 52px);
+	grid-gap: 5px;
 	place-content: center;
 	place-items: center;
 
+	i {
+		width: 100%;
+		padding: 10px;
+		box-sizing: border-box;
+		border-radius: 10px;
+	}
+
 	.fa-check {
-		color: #238636;
+		background-color: #79b15a;
 	}
 	.fa-xmark {
-		color: #da3633;
+		background-color: #d25842;
 	}
 }
 
