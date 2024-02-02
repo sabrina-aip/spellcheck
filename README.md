@@ -3,7 +3,6 @@
 I suck at spelling and this project was supposed to help me be better but it actually just made me accept that spelling is very hard. Anyway, here's the website assets including the audio clips. The actual process of generating new audio prompts can be found in a YouTube video I haven't published yet. 
 
 # Known Issues
-* Emoji results are awful for the colourblind
 * Pronunciation goes very rogue at points
   * Examples : very, ascension, porcelain, rosin, reveille, hat, upon, portcullus, innovator, pie, vineyard, concatenate, javas, thrasonical, annual, fribourg, rubric, retrodict, expatiated, hem, hermeneutics, wizard, arsenic, power, expression, longitude, accordance, gonzo, toga, epoch
 * Submit button on mobile is too close to keys - it might be worth just switching to a mobile keyboard

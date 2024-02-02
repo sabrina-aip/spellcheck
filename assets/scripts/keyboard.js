@@ -155,12 +155,11 @@ function updateResults(){
         correctSpellingLst.push(player[2])
         submissionLst.push(player[3])
         if (player[0].classList.contains("fa-check")) {
-            results += "🟩"
+            results += '✅'
         } else if (player[0].classList.contains("fa-xmark")) {
-            results += "🟥"
+            results += '❌'
             numWrong += 1;
         }
-        results += " "
     })
     results += "\\n"
 }
