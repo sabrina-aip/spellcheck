@@ -146,6 +146,7 @@ a {
     width:fit-content;  
     margin-left: auto;
     margin-right: auto;
+	cursor: pointer;
     -webkit-tap-highlight-color: rgba(0,0,0,0);
 }
 
@@ -233,11 +234,16 @@ a {
     aspect-ratio: 1/1;
     align-items: center;
     margin: 10px;
+	cursor: pointer;
 }
 
 .prompt.clicked {
     transform: translate(5px, 5px);
     box-shadow: 0px 0px 0px black;
+}
+
+.submitted {
+	cursor: not-allowed;
 }
 
 /* PRACTICE MODE */
