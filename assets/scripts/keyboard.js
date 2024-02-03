@@ -48,7 +48,7 @@ var submissionLst = [];
 KEYBOARD_EL.innerHTML = `<div id="keyboard-cont">
     <div class="first-row">
         <button class="keyboard-button boxed" id="q">Q</button>
-        <button class="keyboard-button boxed" id="q">W</button>
+        <button class="keyboard-button boxed" id="w">W</button>
         <button class="keyboard-button boxed" id="e">E</button>
         <button class="keyboard-button boxed" id="r">R</button>
         <button class="keyboard-button boxed" id="t">T</button>
@@ -348,67 +348,58 @@ wordFive.addEventListener("click", (e) => {
 })
 
 // LINK ONSCREEN KEYBOARD FUNCTIONALITY TO KEYPRESSS
-document.getElementById("keyboard-cont").addEventListener("click", (e) => {
-    const target = e.target
+document.getElementById('keyboard-cont').addEventListener('click', (e) => {
+    const target = e.target;
     
-    if (!target.classList.contains("keyboard-button")) {
-        return
+    if (!target.classList.contains('keyboard-button')) {
+        return;
     }
 
-    let key = target.textContent
+    const key = target.id;
 
-    if (target.classList.contains("fa-delete-left")){
-        deleteLetter();
-        return
-        //key = "Backspace"
-    }
+	if (key === 'Backspace') {
+		deleteLetter();
+	} else if (key === 'Enter') {
+		guessPreprocess();
+	} else { // every other key
+		insertLetter(key);
+	}
 
-    if (key==="submit"){
-        guessPreprocess();
-        return
-        //key = "Enter"
-    }
-
-    let pressedKey = target.innerText;
-    insertLetter(pressedKey)
+	target.classList.add('clicked');
+	setTimeout(() => {
+		target.classList.remove('clicked');
+	}, 50);
     //document.querySelector(`#${pressedKey.toLowerCase()}`).classList.add("clicked")
     //document.dispatchEvent(new KeyboardEvent("keyup", {'key': key}))
 })
 
 // KEYPRESS TYPING LISTENER
-document.addEventListener("keyup", (e) => {
+document.addEventListener('keydown', (e) => {
+	let pressedKey = String(e.key);
+	let found = pressedKey.match(/[a-z]/gi);
 
-   let pressedKey = String(e.key)
-   let found = pressedKey.match(/[a-z]/gi)
-
-    if (pressedKey === "Enter") {
-        document.querySelector(`#${pressedKey}`).classList.add("clicked")
-        setTimeout(() => {
-            setTimeout(document.querySelector(`#${pressedKey}`).classList.remove("clicked"));
-          }, 50);
-        guessPreprocess();
-        return;
-    }
-
-    if (pressedKey === "Backspace" & attemptStr.length != 0) {
-        document.querySelector(`#${pressedKey}`).classList.add("clicked")
-        setTimeout(() => {
-            setTimeout(document.querySelector(`#${pressedKey}`).classList.remove("clicked"));
-          }, 50);
-        deleteLetter()
-        return;
-    }
-
-    if (!found || found.length > 1) {
-        return
-    } else {
-        insertLetter(pressedKey)
-        document.querySelector(`#${pressedKey.toLowerCase()}`).classList.add("clicked")
-        setTimeout(() => {
-            setTimeout(document.querySelector(`#${pressedKey.toLowerCase()}`).classList.remove("clicked"));
-            }, 50);
-        return;
-    }
+	if (pressedKey === 'Enter') {
+		document.querySelector('#Enter').classList.add('clicked')
+		guessPreprocess();
+	} else if (pressedKey === 'Backspace') {
+		document.querySelector('#Backspace').classList.add('clicked')
+		deleteLetter()
+	} else if (found && found.length === 1) {
+		document.querySelector(`#${pressedKey.toLowerCase()}`).classList.add('clicked');
+		insertLetter(pressedKey);
+	}
 })
+
+document.addEventListener('keyup', (e) => {
+	let pressedKey = String(e.key)
+	let found = pressedKey.match(/[a-z]/gi)
+
+	if (pressedKey === 'Enter' ||
+		pressedKey === 'Backspace' ||
+		found && found.length === 1)
+	{
+		document.querySelector(`#${pressedKey}`).classList.remove("clicked");
+	}
+});
 
 checkLevel(level)
