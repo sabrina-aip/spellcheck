@@ -296,6 +296,7 @@ document.addEventListener("keydown", (e) => {
     if (!found || found.length > 1) {
         return
     } else if (document.querySelector(`#${pressedKey.toLowerCase()}`) && !document.querySelector(`#${pressedKey.toLowerCase()}`).classList.contains("clicked")) {
+        insertLetter(pressedKey)
         document.querySelector(`#${pressedKey.toLowerCase()}`).classList.add("clicked")
         return;
     } else {
@@ -323,7 +324,6 @@ document.addEventListener("keyup", (e) => {
     if (!found || found.length > 1) {
         return
     } else {
-        insertLetter(pressedKey)
         document.querySelector(`#${pressedKey.toLowerCase()}`).classList.remove("clicked");
         return;
     }

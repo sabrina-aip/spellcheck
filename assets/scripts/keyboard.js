@@ -48,7 +48,7 @@ var submissionLst = [];
 KEYBOARD_EL.innerHTML = `<div id="keyboard-cont">
     <div class="first-row">
         <button class="keyboard-button boxed" id="q">Q</button>
-        <button class="keyboard-button boxed" id="q">W</button>
+        <button class="keyboard-button boxed" id="w">W</button>
         <button class="keyboard-button boxed" id="e">E</button>
         <button class="keyboard-button boxed" id="r">R</button>
         <button class="keyboard-button boxed" id="t">T</button>
@@ -413,6 +413,7 @@ document.addEventListener("keydown", (e) => {
     if (!found || found.length > 1) {
         return
     } else if (document.querySelector(`#${pressedKey.toLowerCase()}`) && !document.querySelector(`#${pressedKey.toLowerCase()}`).classList.contains("clicked")) {
+        insertLetter(pressedKey)
         document.querySelector(`#${pressedKey.toLowerCase()}`).classList.add("clicked")
         return;
     } else {
@@ -440,7 +441,6 @@ document.addEventListener("keyup", (e) => {
     if (!found || found.length > 1) {
         return
     } else {
-        insertLetter(pressedKey)
         document.querySelector(`#${pressedKey.toLowerCase()}`).classList.remove("clicked");
         return;
     }
