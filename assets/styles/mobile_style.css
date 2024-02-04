@@ -21,7 +21,7 @@ p {
 
 .header {
     width: 95%;
-    margin-left: auto; 
+    margin-left: auto;
     margin-right: auto;
     text-align: center;
 }
@@ -45,7 +45,7 @@ p {
 
 .content {
     width: 95%;
-    margin-left: auto; 
+    margin-left: auto;
     margin-right: auto;
     text-align: center;
 }
@@ -53,7 +53,7 @@ p {
 .footer {
     width:50%;
     display:flex;
-    align-items: center; 
+    align-items: center;
     justify-content: center;
     flex-direction: column-reverse;
     margin-left:auto;
@@ -77,8 +77,8 @@ table {
     text-align: left;
     text-justify: inter-word;
     width: 95%;
-    margin-left: auto; 
-    margin-right: auto;    
+    margin-left: auto;
+    margin-right: auto;
 }
 
 td {
@@ -143,7 +143,7 @@ a {
 .btn {
     color: black;
     padding: 10px 30px 10px 30px;
-    width:fit-content;  
+    width:fit-content;
     margin-left: auto;
     margin-right: auto;
     -webkit-tap-highlight-color: rgba(0,0,0,0);
@@ -169,7 +169,7 @@ a {
     align-items: center;
     row-gap: 2px;
 }
-  
+
 #keyboard-cont div {
     display: flex;
     justify-content: center;
@@ -178,8 +178,8 @@ a {
     gap:3px;
 }
 
-.fourth-row{
-    padding: 20px 0 20px 0;
+.fourth-row {
+    padding: 10px 10px 10px 10px;
 }
 
 .keyboard-button {

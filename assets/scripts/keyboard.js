@@ -48,7 +48,7 @@ var submissionLst = [];
 KEYBOARD_EL.innerHTML = `<div id="keyboard-cont">
     <div class="first-row">
         <button class="keyboard-button boxed" id="q">Q</button>
-        <button class="keyboard-button boxed" id="q">W</button>
+        <button class="keyboard-button boxed" id="w">W</button>
         <button class="keyboard-button boxed" id="e">E</button>
         <button class="keyboard-button boxed" id="r">R</button>
         <button class="keyboard-button boxed" id="t">T</button>
@@ -102,14 +102,14 @@ function checkLevel(level){
         dictValue = "levelThree"
 
     } else {
-        window.location.replace("ahshit.html");    
+        window.location.replace("ahshit.html");
     }
 }
 
 // POPULATE PAGE WITH LEVEL APPROPRIATE WORDS
 function assignSound(levelPath, words){
     path = `assets/audio/${levelPath}`;
-   try{
+    try{
         // setting neutral values
         wordLst = words;
         numSubmitted = 0;
@@ -122,7 +122,7 @@ function assignSound(levelPath, words){
         wordFivePlayer.src = `${path}/${words[4]}.mp3`
     } catch(error) {
         console.log(error)
-    }         
+    }
 }
 
 // MOVE TO NEXT ROUND
@@ -134,7 +134,7 @@ function nextRound(){
     } else if (level.textContent == "Level Three: Hard"){
         endGame();
     } else {
-        window.location.replace("ahshit.html");  
+        window.location.replace("ahshit.html");
     }
     nextRoundBtn.innerHTML = `<div></div>`
     checkLevel(level)
@@ -215,21 +215,21 @@ function checkGuess() {
     if ((attemptStr.toLowerCase() == activeWord.toLowerCase())) {
         stopSound(activePlayer[1]);
         activePlayer[0].style.backgroundColor = "#79b15a";
-        activePlayer[0].classList.add("submitted", "fa-check");     
+        activePlayer[0].classList.add("submitted", "fa-check");
         activePlayer[0].classList.remove("clicked","fa-play-circle", "fa-circle-stop","btn");
 
         // RECORD FOR RESULTS
         activePlayer[3] = `<td>${attemptStr}</td>`
         //submissionLst.push(`<td>${attemptStr}</td>`)
 
-        
+
         // DEACTIVATE WORD
         activeWord = null;
-        activePlayer = null;   
+        activePlayer = null;
     } else {
         stopSound(activePlayer[1]);
         activePlayer[0].style.backgroundColor = "#d25842";
-        activePlayer[0].classList.add("submitted", "fa-xmark"); 
+        activePlayer[0].classList.add("submitted", "fa-xmark");
         activePlayer[0].classList.remove("clicked","fa-circle-stop", "fa-play-circle","btn");
 
         // RECORD FOR RESULTS
@@ -238,10 +238,10 @@ function checkGuess() {
 
         // DEACTIVATE WORD
         activeWord = null;
-        activePlayer = null;   
+        activePlayer = null;
     }
     attemptStr = '';
-    attempt.value = attemptStr;    
+    attempt.value = attemptStr;
     numSubmitted += 1;
 
     if (numSubmitted == 5) {
@@ -286,7 +286,7 @@ function updatePlayer(playerLst, activePlayer) {
         activePlayer[0].classList.add("fa-play-circle");
 
         lastActiveWord = activeWord;
-        
+
         // DEACTIVATE WORD
         activeWord = null;
         activePlayer = null;
@@ -350,54 +350,35 @@ wordFive.addEventListener("click", (e) => {
 // LINK ONSCREEN KEYBOARD FUNCTIONALITY TO KEYPRESSS
 document.getElementById("keyboard-cont").addEventListener("click", (e) => {
     const target = e.target
-    
+
     if (!target.classList.contains("keyboard-button")) {
         return
     }
 
     let key = target.textContent
 
-    if (target.classList.contains("fa-delete-left")){
+    if (target.classList.contains("fa-delete-left")) {
+        target.classList.add("clicked")
+        setTimeout(() => {
+            setTimeout(target.classList.remove("clicked"));
+        }, 50);
         deleteLetter();
         return
         //key = "Backspace"
     }
 
-    if (key==="submit"){
+    if (key === "submit") {
+        target.classList.add("clicked")
+        setTimeout(() => {
+            setTimeout(target.classList.remove("clicked"));
+        }, 50);
         guessPreprocess();
         return
         //key = "Enter"
     }
 
     let pressedKey = target.innerText;
-    insertLetter(pressedKey)
-    //document.querySelector(`#${pressedKey.toLowerCase()}`).classList.add("clicked")
-    //document.dispatchEvent(new KeyboardEvent("keyup", {'key': key}))
-})
-
-// KEYPRESS TYPING LISTENER
-document.addEventListener("keyup", (e) => {
-
-   let pressedKey = String(e.key)
-   let found = pressedKey.match(/[a-z]/gi)
-
-    if (pressedKey === "Enter") {
-        document.querySelector(`#${pressedKey}`).classList.add("clicked")
-        setTimeout(() => {
-            setTimeout(document.querySelector(`#${pressedKey}`).classList.remove("clicked"));
-          }, 50);
-        guessPreprocess();
-        return;
-    }
-
-    if (pressedKey === "Backspace" & attemptStr.length != 0) {
-        document.querySelector(`#${pressedKey}`).classList.add("clicked")
-        setTimeout(() => {
-            setTimeout(document.querySelector(`#${pressedKey}`).classList.remove("clicked"));
-          }, 50);
-        deleteLetter()
-        return;
-    }
+    let found = pressedKey.match(/[a-z]/gi)
 
     if (!found || found.length > 1) {
         return
@@ -406,7 +387,61 @@ document.addEventListener("keyup", (e) => {
         document.querySelector(`#${pressedKey.toLowerCase()}`).classList.add("clicked")
         setTimeout(() => {
             setTimeout(document.querySelector(`#${pressedKey.toLowerCase()}`).classList.remove("clicked"));
-            }, 50);
+        }, 50);
+        return;
+    }
+    //document.querySelector(`#${pressedKey.toLowerCase()}`).classList.add("clicked")
+    //document.dispatchEvent(new KeyboardEvent("keyup", {'key': key}))
+})
+
+// KEYPRESS TYPING LISTENER
+document.addEventListener("keydown", (e) => {
+
+    let pressedKey = String(e.key)
+    let found = pressedKey.match(/[a-z]/gi)
+
+    if (pressedKey === "Enter") {
+        document.querySelector(`#${pressedKey}`).classList.add("clicked");
+        return;
+    }
+
+    if (pressedKey === "Backspace" & attemptStr.length != 0) {
+        document.querySelector(`#${pressedKey}`).classList.add("clicked")
+        return;
+    }
+
+    if (!found || found.length > 1) {
+        return
+    } else if (document.querySelector(`#${pressedKey.toLowerCase()}`) && !document.querySelector(`#${pressedKey.toLowerCase()}`).classList.contains("clicked")) {
+        insertLetter(pressedKey)
+        document.querySelector(`#${pressedKey.toLowerCase()}`).classList.add("clicked")
+        return;
+    } else {
+        return;
+    }
+})
+
+document.addEventListener("keyup", (e) => {
+
+    let pressedKey = String(e.key)
+    let found = pressedKey.match(/[a-z]/gi)
+
+    if (pressedKey === "Enter") {
+        document.querySelector(`#${pressedKey}`).classList.remove("clicked");
+        guessPreprocess();
+        return;
+    }
+
+    if (pressedKey === "Backspace" & attemptStr.length != 0) {
+        document.querySelector(`#${pressedKey}`).classList.remove("clicked");
+        deleteLetter()
+        return;
+    }
+
+    if (!found || found.length > 1) {
+        return
+    } else {
+        document.querySelector(`#${pressedKey.toLowerCase()}`).classList.remove("clicked");
         return;
     }
 })
