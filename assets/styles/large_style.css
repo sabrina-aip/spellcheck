@@ -161,6 +161,7 @@ a {
     width:fit-content;  
     margin-left: auto;
     margin-right: auto;
+	cursor: pointer;
 }
 
 @media (hover: hover) {
@@ -247,6 +248,8 @@ a {
   align-items: center;
   margin: 5px 5px 1rem 5px;
   position: relative;
+  cursor: pointer;
+  font-size: 2vw;
 }
 .prompt::before { /* Center the play icon */
 position: absolute;
@@ -258,6 +261,10 @@ transform: translate(-50%, -50%);
 .prompt.clicked {
     transform: translate(5px, 5px);
     box-shadow: 0px 0px 0px black;
+}
+
+.submitted {
+	cursor: not-allowed;
 }
 
 /* PRACTICE MODE */
