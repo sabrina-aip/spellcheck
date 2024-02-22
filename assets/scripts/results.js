@@ -7,9 +7,10 @@ const results = document.querySelector("#results");
 const copyBtn = document.querySelector("#copy-btn")
 const typos = document.querySelector("#typos")
 
-copyBtn.addEventListener("click", (e) => {
+copyBtn.addEventListener("click", async (e) => {
+    e.preventDefault();
     shareableResults = `Spellcheck #${puzzleNum}\n${sessionStorage.getItem('emojiResults').replaceAll("\\n", "\n")}`;
-    navigator.clipboard.writeText(shareableResults);
+    await navigator.clipboard.writeText(shareableResults);
 }) 
 
 if (emojiResults != null){

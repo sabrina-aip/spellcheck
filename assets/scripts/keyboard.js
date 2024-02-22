@@ -48,7 +48,7 @@ var submissionLst = [];
 KEYBOARD_EL.innerHTML = `<div id="keyboard-cont">
     <div class="first-row">
         <button class="keyboard-button boxed" id="q">Q</button>
-        <button class="keyboard-button boxed" id="q">W</button>
+        <button class="keyboard-button boxed" id="w">W</button>
         <button class="keyboard-button boxed" id="e">E</button>
         <button class="keyboard-button boxed" id="r">R</button>
         <button class="keyboard-button boxed" id="t">T</button>
@@ -190,7 +190,7 @@ function deleteLetter () {
 // CHECK IF GUESS IS CORRECT
 
 function guessPreprocess(){
-    if ((lastActiveWord != null) & (activeWord==null)) {
+    if (lastActiveWord != null && activeWord==null) {
         activeWord = lastActiveWord;
         checkGuess()
         return;
@@ -294,10 +294,10 @@ function updatePlayer(playerLst, activePlayer) {
     }
 
     playerLst.forEach((player) => {
-        if ((!player[0].classList.contains("submitted")) & player[0] != activePlayer[0]) {
+        if (!player[0].classList.contains("submitted") && player[0] != activePlayer[0]) {
             player[0].classList.remove("clicked", "fa-circle-stop");
             stopSound(player[1]);
-        } else if ((!player[0].classList.contains("submitted")) & player[0] == activePlayer[0]) {
+        } else if (!player[0].classList.contains("submitted") && player[0] == activePlayer[0]) {
             activePlayer[0].classList.add("clicked","fa-circle-stop");
             activePlayer[1].play();
         }
@@ -389,7 +389,7 @@ document.addEventListener("keyup", (e) => {
         return;
     }
 
-    if (pressedKey === "Backspace" & attemptStr.length != 0) {
+    if (pressedKey === "Backspace" && attemptStr.length != 0) {
         document.querySelector(`#${pressedKey}`).classList.add("clicked")
         setTimeout(() => {
             setTimeout(document.querySelector(`#${pressedKey}`).classList.remove("clicked"));
