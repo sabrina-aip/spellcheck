@@ -35,6 +35,9 @@ var playerLst = [
     [wordFive, wordFivePlayer, wordFiveSpelling, wordFiveSubmission]
 ];
 
+var correctAudio = new Audio("assets/audio/gameSounds/correct.mp3")
+var wrongAudio = new Audio("assets/audio/gameSounds/wrong.mp3")
+
 var lastActiveWord = null;
 var attemptStr = '';
 var activeWord = null;
@@ -221,7 +224,8 @@ function checkGuess() {
         // RECORD FOR RESULTS
         activePlayer[3] = `<td>${attemptStr}</td>`
         //submissionLst.push(`<td>${attemptStr}</td>`)
-
+        
+        correctAudio.play();
         
         // DEACTIVATE WORD
         activeWord = null;
@@ -235,7 +239,9 @@ function checkGuess() {
         // RECORD FOR RESULTS
         activePlayer[3] = `<td class="error">${attemptStr}</td>`
         //submissionLst.push(`<td class="error">${attemptStr}</td>`)
-
+        
+        wrongAudio.play();
+        
         // DEACTIVATE WORD
         activeWord = null;
         activePlayer = null;   
