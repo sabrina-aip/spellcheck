@@ -54,6 +54,23 @@ p {
     flex: 1 2 auto;
 }
 
+.switch-field {
+    input[type="radio"] {
+      display: none;
+    }
+    label {
+		margin: 3px;
+		display: inline-block;
+		background-color: white;
+		cursor: pointer;
+    }
+    input[type="radio"]:checked + label {
+      background-color: black;
+	  color: white;
+	  border-color: white;
+    }
+}
+
 .content {
     width: 95%;
     margin-left: auto; 
