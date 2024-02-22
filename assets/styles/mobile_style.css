@@ -1,7 +1,17 @@
+/* Imports Roboto font in case it doesn't already exist on the user's computer */
+@import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap');
+
 /* TEXT STYLES */
 
 body {
     font-family: 'Roboto', sans-serif;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 100vh;
+    margin: 0;
+    padding: 2rem 1rem;
+    box-sizing: border-box;
 }
 
 h1 {
@@ -10,7 +20,8 @@ h1 {
 }
 
 p {
-    font-weight: 350;
+  font-weight: 400;
+  line-height: 1.5; /* More legible text */
 }
 
 .line-wrap {
@@ -61,6 +72,9 @@ p {
     font-size: 10pt;
     font-style: italic;
 }
+.footer p {
+  margin: 0.5em 0 0 0;
+}
 
 #social-icons-flexbox {
     display: flex;
@@ -83,7 +97,7 @@ table {
 
 td {
     padding: 0px 10px 10px 10px;
-    font-weight: 350;
+    font-weight: 400;
 
 }
 
@@ -130,6 +144,7 @@ td {
     border-radius: 5px;
     background-color: black;
     color: white;
+    margin: 1.5em 0 0.5em 0;
 }
 
 /* BUTTONS */
@@ -224,18 +239,24 @@ a {
 #word-prompts {
     display: flex;
     flex-direction: row;
-    column-gap: 10px;
-    margin: 10 0 10 0;
+    gap: 0.1vw; /* FIX: Gap is dependent on screen size | smaller screen = smaller spacing */
+    margin: 10px 0 10px 0;
 }
 
 .prompt {
     flex: 1 1 0px;
-    padding: 15px;
+    padding: 10px;
     aspect-ratio: 1/1;
     align-items: center;
-    margin: 10px;
-	cursor: pointer;
-	font-size: 24pt;
+	font-size: 8vw;
+    margin: 5px 5px 1rem 5px;
+    position: relative;
+}
+.prompt::before { /* Center the play icon */
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
 }
 
 .prompt.clicked {
