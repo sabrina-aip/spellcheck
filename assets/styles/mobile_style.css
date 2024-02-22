@@ -121,6 +121,31 @@ td {
 
 }
 
+/* Results Display */
+
+#results {
+	display: grid;
+	grid-template-rows: repeat(3, 52px);
+	grid-template-columns: repeat(5, 52px);
+	grid-gap: 5px;
+	place-content: center;
+	place-items: center;
+
+	i {
+		width: 100%;
+		padding: 10px;
+		box-sizing: border-box;
+		border-radius: 10px;
+	}
+
+	.fa-check {
+		background-color: #79b15a;
+	}
+	.fa-xmark {
+		background-color: #d25842;
+	}
+}
+
 /* TEXT DECORATIION */
 
 .error {

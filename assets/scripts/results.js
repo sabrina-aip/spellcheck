@@ -9,7 +9,7 @@ const typos = document.querySelector("#typos")
 
 copyBtn.addEventListener("click", async (e) => {
     e.preventDefault();
-    shareableResults = `Spellcheck #${puzzleNum}\n${sessionStorage.getItem('emojiResults').replaceAll("\\n", "\n").replaceAll(" ", "")}`;
+    shareableResults = `Spellcheck #${puzzleNum}\n${sessionStorage.getItem('emojiResults').replaceAll("\\n", "\n")}`;
     await navigator.clipboard.writeText(shareableResults);
 }) 
 
@@ -26,15 +26,13 @@ for (var i=0; i<numRows;i++){
             <td colspan=3 style="text-align: center"><b>EASY WORDS</b></td>
         </tr>
         `
-    }
-    if (i == 5){
+    } else if (i == 5){
         test+=`
         <tr>
             <td colspan=3 style="text-align: center"><b>MEDIUM WORDS</b></td>
         </tr>
         `
-    }
-    if (i == 10){
+    } else if (i == 10){
         test+=`
         <tr>
             <td colspan=3 style="text-align: center"><b>HARD WORDS</b></td>
@@ -50,5 +48,5 @@ for (var i=0; i<numRows;i++){
     `
 }
 typos.innerHTML = test;
-emojiResults = emojiResults.replaceAll('\\n', '<br>')
+emojiResults = emojiResults.replaceAll('\\n', '').replaceAll('✅', '<i class="fa-solid fa-check"></i>').replaceAll('❌', '<i class="fa-solid fa-xmark"></i>');
 results.innerHTML = `${emojiResults}`;

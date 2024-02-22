@@ -4,7 +4,8 @@ I suck at spelling and this project was supposed to help me be better but it act
 
 ## Known Issues
 
-* Emoji results are awful for the colourblind
+# Known Issues
+=======
 * Pronunciation goes very rogue at points
   * Examples: very, ascension, porcelain, rosin, reveille, hat, upon, portcullus, innovator, pie, vineyard, concatenate, javas, thrasonical, annual, fribourg, rubric, retrodict, expatiated, hem, hermeneutics, wizard, arsenic, power, expression, longitude, accordance, gonzo, toga, epoch
 * Submit button on mobile is too close to keys - it might be worth just switching to a mobile keyboard
