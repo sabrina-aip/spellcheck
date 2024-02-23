@@ -65,7 +65,7 @@ KEYBOARD_EL.innerHTML = `<div id="keyboard-cont">
 
 var wordLst;
 
-// CHECK LEVEL 
+// CHECK LEVEL
 function checkLevel(level){
     resetPlayer(playerLst);
     attempt.value=attemptStr;
@@ -79,7 +79,7 @@ function checkLevel(level){
         wordLst = shuffle(hardWords)
         levelPath = "levelThreeNEW"
     } else {
-        window.location.replace("ahshit.html");   
+        window.location.replace("ahshit.html");
     }
     path = `assets/audio/${levelPath}`;
     updateWord();
@@ -185,7 +185,7 @@ function checkGuess() {
     }
 
     attemptStr = '';
-    attempt.value = attemptStr; 
+    attempt.value = attemptStr;
     return
 }
 
@@ -195,7 +195,7 @@ function updatePlayer(playerLst, activePlayer) {
         stopSound(activePlayer[1]);
         activePlayer[0].classList.remove("clicked","fa-circle-stop");
         activePlayer[0].classList.add("fa-play-circle");
-        
+
         lastActiveWord = activeWord;
 
         // DEACTIVATE WORD
@@ -234,7 +234,7 @@ wordOne.addEventListener("click", (e) => {
 // LINK ONSCREEN KEYBOARD FUNCTIONALITY TO KEYPRESSS
 document.getElementById("keyboard-cont").addEventListener("click", (e) => {
     const target = e.target
-    
+
     if (!target.classList.contains("keyboard-button")) {
         return
     }
@@ -281,6 +281,10 @@ document.addEventListener("keyup", (e) => {
             setTimeout(document.querySelector(`#${pressedKey}`).classList.remove("clicked"));
           }, 50);
         guessPreprocess()
+        setTimeout(() => {
+            activePlayer = [wordOne, wordOnePlayer];
+            updatePlayer(playerLst, activePlayer)
+        }, 250)
         return;
     }
 
