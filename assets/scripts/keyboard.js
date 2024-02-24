@@ -381,6 +381,36 @@ document.addEventListener("keyup", (e) => {
    let pressedKey = String(e.key)
    let found = pressedKey.match(/[a-z]/gi)
 
+    if (pressedKey === "1" || pressedKey === 'Numpad1') {
+        wordOne.dispatchEvent(new Event("click"));
+        return;
+    }
+
+    if (pressedKey === "2" || pressedKey === 'Numpad2') {
+        wordTwo.dispatchEvent(new Event("click"));
+        return;
+    }
+
+    if (pressedKey === "3" || pressedKey === 'Numpad3') {
+        wordThree.dispatchEvent(new Event("click"));
+        return;
+    }
+
+    if (pressedKey === "4" || pressedKey === 'Numpad4') {
+        wordFour.dispatchEvent(new Event("click"));
+        return;
+    }
+
+    if (pressedKey === "5" || pressedKey === 'Numpad5') {
+        wordFive.dispatchEvent(new Event("click"));
+        return;
+    }
+
+    if (pressedKey === "ArrowRight" && numSubmitted === 5) {
+        nextRoundBtn.dispatchEvent(new Event("click"));
+        return;
+    }
+
     if (pressedKey === "Enter") {
         document.querySelector(`#${pressedKey}`).classList.add("clicked")
         setTimeout(() => {
