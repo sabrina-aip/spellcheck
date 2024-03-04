@@ -21,33 +21,13 @@
     </div>
     <div class="content">
         <div id="top-banner">
-            <h2 class="boxed-black" id="level">Level One: Easy</h2>
+            <h2 class="boxed-black"><span id="round"></span>: <span id="roundType"></span></h2>
         </div>
-        <div id="word-prompts">
-            <div id="word-one" class="prompt boxed btn fa fa-play-circle" style="font-size: 24pt;">
-                <audio id="word-one-player" src="" loop></audio>
-            </div>
-
-            <div id="word-two" class="prompt boxed btn fa fa-play-circle" style="font-size: 24pt;">
-                <audio id="word-two-player" src="" loop></audio>
-            </div>
-
-            <div id="word-three" class="prompt boxed btn fa fa-play-circle" style="font-size: 24pt;">
-                <audio id="word-three-player" src="" loop></audio>
-            </div>
-
-            <div id="word-four" class="prompt boxed btn fa fa-play-circle" style="font-size: 24pt;">
-                <audio id="word-four-player" src="" loop></audio>
-            </div>
-
-            <div id="word-five" class="prompt boxed btn fa fa-play-circle" style="font-size: 24pt;">
-                <audio id="word-five-player" src="" loop></audio>
-            </div>
-        </div>
+        <div id="word-prompts"></div>
         <div id="next-round-btn"></div>
         <input id="attempt-box" type="text" placeholder="start typing..." readonly>
         <div id="keyboard"></div>
-
+        <button class="keyboard-button boxed hidden" type="button" id="next">Next Level <span class="fa fa-arrow-right"></span></button>
     </div>
 
     <div class="footer">
@@ -60,6 +40,5 @@
         </div>
     </div> 
 </body>
-<script src="assets/scripts/wordLstGenerator.js"></script>
-<script src="assets/scripts/keyboard.js"></script> 
+<script type="module" src="assets/scripts/daily_challenge.js"></script>
 </html>
