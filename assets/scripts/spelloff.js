@@ -256,7 +256,7 @@ document.getElementById("keyboard-cont").addEventListener("click", (e) => {
 document.addEventListener("keyup", (e) => {
 
    let pressedKey = String(e.key)
-   let found = pressedKey.match(/[a-z]/gi)
+   let found = pressedKey.match(/^[a-z]$/gi)
 
     if (pressedKey === "Enter") {
         document.querySelector(`#${pressedKey}`).classList.add("clicked")
@@ -273,6 +273,12 @@ document.addEventListener("keyup", (e) => {
             setTimeout(document.querySelector(`#${pressedKey}`).classList.remove("clicked"));
           }, 50);
         deleteLetter()
+        return;
+    }
+
+    if (pressedKey === " ") {
+        activePlayer = [wordOne, wordOnePlayer];
+        updatePlayer(playerLst, activePlayer);
         return;
     }
 
