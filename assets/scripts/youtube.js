@@ -25,7 +25,7 @@ var playerLst = [[wordOne, wordOnePlayer]];
 KEYBOARD_EL.innerHTML = `<div id="keyboard-cont">
     <div class="first-row">
         <button class="keyboard-button boxed" id="q">Q</button>
-        <button class="keyboard-button boxed" id="q">W</button>
+        <button class="keyboard-button boxed" id="w">W</button>
         <button class="keyboard-button boxed" id="e">E</button>
         <button class="keyboard-button boxed" id="r">R</button>
         <button class="keyboard-button boxed" id="t">T</button>
